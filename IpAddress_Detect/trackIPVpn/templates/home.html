@@ -18,7 +18,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
         <a class="navbar-brand" href="#">LOGO</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="true" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -31,14 +31,38 @@
         </div>
     </nav>
 
-    <div class="jumbotron" style=" padding-left: 50px; padding-right: 50px;">
-        <h1 class="display-4">Fetch and Enter your IP Address Here :</h1>
-        <form method="POST">
-            {% csrf_token %} {{ form.as_p }}
-            <input type="submit" value="Submit">
-        </form>
-        <hr class="my-4">
-    </div>
+
+    <br><br>
+    <center>
+        <div class="card" style="width: 30rem;">
+            <div class="card-body">
+                <h5 class="card-title">Fetch and Enter your IP Address Here :</h5>
+                <form method="POST">
+                    {% csrf_token %} {{ form.as_p }}
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                </form>
+                <br><br>
+
+                <!-- <section> -->
+                <!-- <div class="card"> -->
+                <div class="ip_address"></div>
+                <button id="btn">Get IP Address </button>
+                <!-- </section> -->
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js">
+                </script>
+                <script>
+                    $(document).ready(function() {
+                        $("#btn").click(function() {
+                            $.getJSON("https://ipinfo.io", function(data) {
+                                $(".ip_address").text(data.ip);
+                            })
+                        })
+                    })
+                </script> <br>
+                <p class="card-text">Text you want here.</p>
+            </div>
+            <!-- </div> -->
+    </center>
 
 </body>
 
